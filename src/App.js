@@ -10,6 +10,7 @@ import Gaming from './components/Gaming'
 import SavedVideos from './components/SavedVideos'
 import ProtectedRoute from './components/ProtectedRoute'
 import NotFound from './components/NotFound'
+import VideoPlay from './components/VideoPlay'
 
 class App extends Component {
   state = {isDark: false}
@@ -34,6 +35,7 @@ class App extends Component {
               path="/saved-videos"
               component={SavedVideos}
             />
+            <ProtectedRoute path="/videos/:id" component={VideoPlay} />
             <ProtectedRoute path="/not-found" component={NotFound} />
             <Redirect to="/not-found" />
           </Switch>

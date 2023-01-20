@@ -4,8 +4,6 @@ import {Component} from 'react'
 
 import {formatDistanceToNow} from 'date-fns'
 
-// import {formatDistance} from 'date-fns'
-
 import NxtContext from '../../context/NxtContext'
 import {RowContainer} from '../Header/styleComponents'
 import {ThumbImage} from '../VideoItem/styleComponents'

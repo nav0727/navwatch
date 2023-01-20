@@ -7,8 +7,8 @@ export const TrendingContainer = styled.div`
   color: ${props => (props.isDark ? '#020202' : '#cccccc')};
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
+  height: 95vh;
+  width: 95vw;
   font-size: 16px;
   @media screen and (max-width: 5677px) {
     font-size: 12px;
@@ -18,7 +18,7 @@ export const TrendingBody = styled.div`
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
-  width: 100%;
+  width: 76vw;
   background-color: ${props => (props.isDark ? '#fff' : '#020202')};
   color: ${props => (props.isDark ? '#181818' : '#fff')};
   height: 87vh;
@@ -48,4 +48,10 @@ export const Game = styled.div`
   align-items: center;
   padding-left: 5vw;
   background-color: ${props => (props.isDark ? '#f0f0f0' : '#181818')};
+`
+export const TrendBody = styled.div`
+  width: 84vw;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
 `

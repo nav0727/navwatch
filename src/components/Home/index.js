@@ -24,12 +24,7 @@ import {
   LoaderContainer,
 } from './styleComponents'
 import VideoItem from '../VideoItem'
-import {
-  FailureContainer,
-  FailureImage,
-  EmptyImage,
-  EmptyListContainer,
-} from '../Gaming/styleComponents'
+
 import {Paragraph} from '../NavBar/styleComponents'
 
 const apiConstants = {
@@ -133,8 +128,8 @@ class Home extends Component {
         const {isDark} = value
 
         return (
-          <EmptyListContainer className="empty-list-container">
-            <EmptyImage
+          <div className="empty-list-container">
+            <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
               alt="no videos"
               className="empty-image"
@@ -145,7 +140,7 @@ class Home extends Component {
               Try different key words or remove search filter
             </Paragraph>
             <button type="button">Retry</button>
-          </EmptyListContainer>
+          </div>
         )
       }}
     </NxtContext.Consumer>
@@ -157,8 +152,8 @@ class Home extends Component {
         const {isDark} = value
 
         return (
-          <FailureContainer isDark={isDark}>
-            <FailureImage
+          <div>
+            <img
               src={
                 isDark
                   ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
@@ -172,7 +167,7 @@ class Home extends Component {
               again.
             </p>
             <button type="button">Retry</button>
-          </FailureContainer>
+          </div>
         )
       }}
     </NxtContext>

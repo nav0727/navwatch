@@ -24,6 +24,7 @@ export const InPutBar = styled.input`
 export const UlCon = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  list-style-type: none;
 `
 
 export const SearchContainer = styled.div`
@@ -46,17 +47,13 @@ export const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
 `
-export const BodyContainer = styled.div` 
+export const BodyContainer = styled.div`
   display: flex;
-  flex-wrap: nowrap;
   overflow-y: scroll;
-  width: 100%;
-  height: 90vh;
+  height: 88vh;
   flex-direction: column;
   background-color: #020202;
   color: #fff;
-::-webkit-scrollbar
-  display: none;
 `
 export const HomeWallPaper = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
@@ -91,21 +88,3 @@ export const LoaderContainer = styled.div`
   justify-content: center;
   height: 80vh;
 `
-/*
-.close {
-  border: none;
-  background: transparent;
-}
-.close:hover {
-  background-color: #ff0b37;
-  padding: 10px;
-}
-
-
-
-/*
-.search-icon {
-  color: #020202;
-  font-size: 20px;
-}
-*/

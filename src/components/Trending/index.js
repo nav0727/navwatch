@@ -2,18 +2,15 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
+import {HiFire} from 'react-icons/hi'
+
 import Header from '../Header'
 import NavBar from '../NavBar'
 
 import NxtContext from '../../context/NxtContext'
 import {RowContainer} from '../Header/styleComponents'
 
-import {
-  VideosContainer,
-  UlCon,
-  HomeContainer,
-  LoaderContainer,
-} from '../Home/styleComponents'
+import {UlCon, LoaderContainer, HomeContainer} from '../Home/styleComponents'
 import {
   FailureContainer,
   FailureImage,
@@ -22,8 +19,10 @@ import {
 } from '../Gaming/styleComponents'
 import {Paragraph} from '../NavBar/styleComponents'
 import TrendingItem from '../TrendingItem'
+import {TrendingBody} from '../TrendingItem/styleComponents'
+import {Circle, GamingHead, Game, TrendBody} from './styleComponents'
 
-const apiConstants = {
+const apiStatus = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
@@ -33,7 +32,7 @@ const apiConstants = {
 class Trending extends Component {
   state = {
     trendList: [],
-    apiStatus: apiConstants.inProgress,
+    res: apiStatus.inProgress,
   }
 
   componentDidMount() {
@@ -56,12 +55,12 @@ class Trending extends Component {
       },
       method: 'GET',
     }
-    const response = await fetch(url, options)
-    if (response.ok === true) {
-      const data = await response.json()
+    const responseData = await fetch(url, options)
+    if (responseData.ok === true) {
+      const resData = await responseData.json()
 
       // console.log(data)
-      const updateVideos = await data.videos.map(each => ({
+      const updateVideos = await resData.videos.map(each => ({
         id: each.id,
         title: each.title,
         thumbnailUrl: each.thumbnail_url,
@@ -72,11 +71,11 @@ class Trending extends Component {
       }))
       // console.log(updateVideos)
       this.setState(
-        {trendList: updateVideos, apiStatus: apiConstants.success},
+        {trendList: updateVideos, res: apiStatus.success},
         this.getTrends,
       )
     } else {
-      this.setState({apiStatus: apiConstants.failure})
+      this.setState({res: apiStatus.failure})
     }
   }
 
@@ -104,7 +103,7 @@ class Trending extends Component {
         const {isDark} = value
 
         return (
-          <EmptyListContainer className="empty-list-container">
+          <EmptyListContainer>
             <EmptyImage
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
               alt="no videos"
@@ -128,7 +127,7 @@ class Trending extends Component {
         const {isDark} = value
 
         return (
-          <FailureContainer isDark={isDark}>
+          <FailureContainer isDark={isDark} data-testid="failure">
             <FailureImage
               src={
                 isDark
@@ -156,13 +155,13 @@ class Trending extends Component {
   )
 
   renderVideos = () => {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
-      case apiConstants.success:
+    const {res} = this.state
+    switch (res) {
+      case apiStatus.success:
         return this.renderSuccess()
-      case apiConstants.failure:
+      case apiStatus.failure:
         return this.renderFailure()
-      case apiConstants.inProgress:
+      case apiStatus.inProgress:
         return this.renderLoading()
       default:
         return null
@@ -180,9 +179,17 @@ class Trending extends Component {
               <RowContainer>
                 <NavBar />
 
-                <VideosContainer isDark={isDark}>
-                  {this.renderVideos()}
-                </VideosContainer>
+                <TrendBody isDark={isDark}>
+                  <Game isDark={isDark}>
+                    <Circle>
+                      <HiFire />
+                    </Circle>
+                    <GamingHead isDark={isDark}>Trending</GamingHead>
+                  </Game>
+                  <TrendingBody isDark={isDark} className="body">
+                    {this.renderVideos()}
+                  </TrendingBody>
+                </TrendBody>
               </RowContainer>
             </HomeContainer>
           )

@@ -43,7 +43,8 @@ export const Thumb = styled.img`
 export const ListItemContainer = styled.div`
   margin-bottom: 3vh;
   display: flex;
-  width: 84vw;
+  width: 76vw;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   color: ${props => (props.isDark ? '#fff' : '#181818')};
